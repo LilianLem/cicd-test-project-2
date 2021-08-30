@@ -19,12 +19,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_DISABLED: 1
-      - name: package-version
-        uses: nyaa8/package-version@v1.0.3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -40,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.PACKAGE_VERSION }}
-          release_name: Release ${{ env.PACKAGE_VERSION }}
+          tag_name: v${{ ${{ steps.package-json-endpoint.outputs.endpoint }}
+          release_name: Release ${{ ${{ steps.package-json-endpoint.outputs.endpoint }}
           draft: false
           prerelease: false
